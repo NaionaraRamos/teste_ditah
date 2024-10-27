@@ -3,18 +3,18 @@ package com.teste.ditah.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+//import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.ditah.model.Produto;
 import com.teste.ditah.service.ProdutoService;
 
 
-@Controller
+@RestController
 @RequestMapping("/produto")
 public class ProdutoController {
 
@@ -35,8 +35,6 @@ public class ProdutoController {
     public List<Produto> buscarTodosOsProdutos() {
         return produtoService.obterTodosOsProdutos();
     }
-
-    
 
     //public Produto atualizarProduto(Long id, Produto produtoEditado) { 
     // }
