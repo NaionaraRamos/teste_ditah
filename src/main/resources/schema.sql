@@ -7,5 +7,5 @@ CREATE TABLE produto (
     preco FLOAT NOT NULL
 );
 
-INSERT INTO produto (nome, descricao, preco) VALUES ('Produto 1', 'Descrição 1', 35);
-INSERT INTO produto (nome, descricao, preco) VALUES ('Produto 2', 'Descrição 2', 5.89);
+INSERT INTO produto (nome, descricao, preco) VALUES ('Produto 1', 'Descrevendo o produto 1', 35);
+INSERT INTO produto (nome, descricao, preco) VALUES ('Produto 2', 'Descrevendo o produto 2', 5.89);

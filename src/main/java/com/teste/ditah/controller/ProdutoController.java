@@ -1,10 +1,7 @@
 package com.teste.ditah.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,22 +17,29 @@ import com.teste.ditah.exception.ProdutoException;
 import com.teste.ditah.model.Produto;
 import com.teste.ditah.service.ProdutoService;
 
-
 @RestController
 @RequestMapping("/produto")
 public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
-    
+
     @PostMapping
-    public Produto criarProduto(@RequestBody Produto produto) {
-        return produtoService.criarProduto(produto);
+    public ResponseEntity<Object> criarProduto(@RequestBody Produto produto) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(produtoService.criarProduto(produto));
+        } catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @GetMapping
-    public List<Produto> buscarTodosOsProdutos() {
-        return produtoService.obterTodosOsProdutos();
+    public ResponseEntity<Object> buscarTodosOsProdutos() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(produtoService.obterTodosOsProdutos());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")
@@ -43,7 +47,7 @@ public class ProdutoController {
         try {
             Produto produto = produtoService.obterProdutoPorId(id);
 
-           // if(produto == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
+            if(produto == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
 
             return ResponseEntity.status(HttpStatus.OK).body(produto);
         } catch (Exception e) {
